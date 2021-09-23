@@ -1,0 +1,57 @@
+version: '3.2'
+
+services:
+  rumus_nginx:
+    image: nginx
+    restart: always
+    depends_on:
+      - rumus_db
+      - rumus_php
+      - rumus_adminer
+
+    volumes:
+      - ../:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/ssl:/mnt
+    ports:
+      - 8098:80
+      - 8091:443
+    networks:
+      - rumus_network
+
+  rumus_db:
+    image: mariadb:10.3.16
+    restart: always
+    environment:
+      MYSQL_DATABASE: rumus
+      MYSQL_ROOT_PASSWORD: rumus
+    ports:
+      - "3367:3306"
+    networks:
+      - rumus_network
+
+  rumus_adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8092:8080
+    networks:
+      - rumus_network
+
+  rumus_php:
+    build: .
+    restart: always
+    volumes:
+      - ../:/var/www/html
+    environment:
+      LOCAL_USER_ID: ${LOCAL_USER_ID}
+      LOCAL_GROUP_ID: ${LOCAL_GROUP_ID}
+      XDEBUG_ENABLE: "true"
+      PHP_IDE_CONFIG: serverName=rumus.get.org
+    networks:
+      - rumus_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  rumus_network:
