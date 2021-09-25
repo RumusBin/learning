@@ -2,4 +2,5 @@
 .local/
 .config/
 .idea/
+/docker/nginx/ssl
 
