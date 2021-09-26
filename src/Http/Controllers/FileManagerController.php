@@ -10,10 +10,6 @@ class FileManagerController
     {
         $pathToPublic = '/var/www/html/public/';
         $result = $this->iterator($pathToPublic);
-//        echo '<pre>';
-//        var_dump($result);
-//        echo '</pre>';
-//        die;
         $tree = $this->treeHtmlView($result);
 
         $title = 'File manager tree';

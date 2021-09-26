@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Max prime divisor of number</title>
+</head>
+<body>
+<?php
+    /** @var int $result*/
+    /** @var int $number */
+?>
+
+<form  method="post" action="/find-max-prime-number">
+    <p><b>Найти максимальный простой делитель числа:</b></p>
+    <p>
+        <label>
+            <input type="text" name="number" placeholder="Enter a number">
+        </label>
+    </p>
+        <Br>
+    <p><input type="submit"></p>
+</form>
+
+<?php if ($result): ?>
+    <div>
+        <p>Самый большой простой делитель числа <?= $number ?> равен:</p>
+        <br>
+        <p> <?= $result ?> </p>
+    </div>
+<?php endif; ?>
+
+</body>
+</html>
