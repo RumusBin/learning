@@ -2,8 +2,17 @@
 
 declare(strict_types=1);
 
+use JetBrains\PhpStorm\NoReturn;
 use Rumus\Core\Router\Router;
 use Rumus\Http\Controllers\FileManagerController;
+
+#[NoReturn]
+function dd($data) {
+    echo "<pre>";
+    var_dump($data);
+    echo "</pre>";
+    die;
+}
 
 const METHOD_SEPARATOR = '@';
 

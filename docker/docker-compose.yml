@@ -15,7 +15,6 @@ services:
       - ./nginx/ssl:/mnt
     ports:
       - 8098:80
-      - 8091:443
     networks:
       - rumus_network
 
