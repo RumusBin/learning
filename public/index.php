@@ -8,6 +8,7 @@ use JetBrains\PhpStorm\NoReturn;
 use Rumus\Core\Router\Router;
 use Rumus\Http\Controllers\FileManagerController;
 use Rumus\Http\Controllers\MaxPrimeDivisorController;
+use Rumus\Http\Controllers\SortController;
 
 #[NoReturn]
 function dd($data) {
@@ -30,6 +31,9 @@ try {
     $router->get('/file-manager', FileManagerController::class . METHOD_SEPARATOR . 'index');
     $router->get('/max-prime-divisor', MaxPrimeDivisorController::class . METHOD_SEPARATOR . 'index');
     $router->post('/find-max-prime-number', MaxPrimeDivisorController::class . METHOD_SEPARATOR . 'find');
+    $router->get('/bubble-sort', SortController::class . METHOD_SEPARATOR . 'bubbleSort');
+    $router->get('/shaker-sort', SortController::class . METHOD_SEPARATOR . 'shakerSort');
+    $router->get('/quick-sort', SortController::class . METHOD_SEPARATOR . 'quickSort');
 
     $router->addNotFoundHandler(function (string $path, string $method) {
         echo 'Path:' . $path . ' by ' . $method . ' method not found!';
